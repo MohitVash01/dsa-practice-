@@ -13,40 +13,47 @@ public class practise
     // SC: No space used for solving problem
     static void Optimal(int ar[])
     {
-        int ele1 = Integer.MIN_VALUE; 
-        int ele2 = Integer.MIN_VALUE ;
-        int count1 = 0 ;
-        int count2 = 0 ;
+        class Solution {
+    public List<Integer> majorityElement(int[] arr) {
+
+        int cnt1 = 0;
+        int ele1 = Integer.MIN_VALUE;
+        int ele2 = Integer.MIN_VALUE;
+        int cnt2 = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (cnt1 == 0 && arr[i] != ele2) {
+                cnt1 = 1;
+                ele1 = arr[i];
+            } else if (cnt2 == 0 && arr[i] != ele1) {
+                cnt2 = 1;
+                ele2 = arr[i];
+            } else if (ele1 == arr[i])
+                cnt1++;
+            else if (ele2 == arr[i])
+                cnt2++;
+            else {
+                cnt1--;
+                cnt2--;
+            }
+        }
         List<Integer> ans = new ArrayList<>();
-        for(int i=0 ; i<ar.length;i++)
-        {
-            if(count1==0 && ele2 != ar[i])
-            {
-                count1=1;
-                ele1 = ar[i];
-            }
-            else if(count2==0 && ele1 != ar[i])
-            {
-                count2++;
-                ele2 = ar[i];
-            }
-            else if(ele1 == ar[i]) count1++;
-            else if(ele2 == ar[i]) count2++;
-            else 
-            {
-                count1--;
-                count2--;
-            }
+        cnt1 = 0;
+        cnt2 = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (ele1 == arr[i])
+                cnt1++;
+            if (ele2 == arr[i])
+                cnt2++;
         }
-        count1=0;
-        count2=0;
-        for(int i=0;i<ar.length;i++)
-        {
-            if(ar[i] == ele1) count1++;
-            if(ar[i] == ele2) count2++;
-        }
-        if(count1> ar.length/3) ans.add(ele1);
-        if(count2 > ar.length/3) ans.add(ele2);
+
+        int mini =(arr.length / 3) + 1;
+        if (cnt1 >= mini)
+            ans.add(ele1);
+        if (cnt2 >= mini)
+            ans.add(ele2);
+        return ans;
+
+    
     display(ans);
     }
     // TC : O(N) -> Adding in HashMap  O(N) -> Traversing the HashMap to find majority element
