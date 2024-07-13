@@ -1,6 +1,6 @@
-package Day3;
+import java.util.ArrayList;
 
-public class reverse_pairs {
+class Solution {
 
     public int reversePairs(int[] arr) {
         return mergeSort(arr, 0, arr.length - 1);
@@ -10,7 +10,7 @@ public class reverse_pairs {
         int right = mid + 1;
         int cnt = 0;
         for (int i = low; i <= mid; i++) {
-            while (right <= high && arr[i] > 2 * arr[right]) right++;
+            while (right <= high && arr[i] > (2L * arr[right])) right++;
             cnt += (right - (mid + 1));
         }
         return cnt;
@@ -57,5 +57,3 @@ public class reverse_pairs {
         }
     }
 }
-
-    
