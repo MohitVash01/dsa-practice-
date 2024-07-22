@@ -1,19 +1,24 @@
+import java.util.*;
 class Solution {
-    public int maxArea(int[] height) {
+    public int countPairs(List<Integer> nums, int target) {
         int i =0 ; 
-        int j = height.length-1;
-        int maxArea = 0;
-        while(i<j)
+        int j = nums.size() - 1;
+        int count =0;
+        while(i<nums.size())
         {
-            int wall_height = Math.min(height[i] , height[j]);
-            int area = wall_height * (j-i);
-            maxArea = Math.max(maxArea , area);
-            if(height[i] < height[j])
-                i++;
-            else
-                j--;
-
+            int k = i+1;
+            while(k<nums.size())
+            {
+                if(nums.get(i) + nums.get(k)< target)
+                {
+                    count++;
+                }
+                k++;
+            }
+            i++;
         }
-        return maxArea;
+    return count;
+        
+        
     }
 }
