@@ -1,37 +1,40 @@
-import java.util.*;
-
 class Solution {
-    public List<List<Integer>> threeSum(int[] ar) {
-        Arrays.sort(ar);
-        List<List<Integer>> ans = new ArrayList<>();
-        
-        for (int i = 0; i < ar.length - 2; i++) {
-            if (i > 0 && ar[i] == ar[i - 1]) continue;  // Skip duplicates for i
-            
-            int j = i + 1;
-            int k = ar.length - 1;
-            
-            while (j < k) {
-                int sum = ar[i] + ar[j] + ar[k];
-                
-                if (sum == 0) {
-                    ans.add(Arrays.asList(ar[i], ar[j], ar[k]));
-                    
-                    // Skip duplicates for j
-                    while (j < k && ar[j] == ar[j + 1]) j++;
-                    // Skip duplicates for k
-                    while (j < k && ar[k] == ar[k - 1]) k--;
-                    
+    public List<List<Integer>> threeSum(int[] arr){
+        List<Integer> temp=new ArrayList<Integer>();
+        int sum=0;
+        Arrays.sort(arr);
+        for(int i=0;i<arr.length;i++)
+        {
+            if(i<0 && a[i] != a[i-1]) continue;
+            int j=i+1;
+            int k=arr.length-1;
+            while(j<k)
+            {
+                sum=arr[i] + arr[j] + arr[k];
+                if(sum<0)
+                {
                     j++;
-                    k--;
-                } else if (sum < 0) {
-                    j++;
-                } else {
+                }
+                else if(sum>0){
                     k--;
                 }
+                else
+                {
+                    temp.add(arr[i]);
+                    temp.add(arr[j]);
+                    temp.add(arr[k]);
+                    j++;
+                    k--;
+                    while(arr[j]==arr[j-1]) j++;
+                    while(arr[k]==arr[k-1]) k--;
+
+
+
+                }
             }
+            
         }
-        
-        return ans;
+
+        return threesum;
     }
 }
