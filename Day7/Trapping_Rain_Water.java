@@ -1,27 +1,37 @@
 class Solution {
     public int trap(int[] height) {
-        int L = 0 ;
-        int R = height.length-1;
-        int Lwall = height[0];
-        int Rwall = height[height.length-1];
-        int totalpaani = 0;
-        while( L<=R)
+        int n=height.length;
+        int left=0;
+        int right=n-1;
+
+        int maxleft=0;
+        int maxright=0;
+        int res=0;
+
+        while(left<right)
         {
-            if(Lwall <= Rwall)
+            if(height[left]<=height[right])
             {
-                Lwall = Math.max(Lwall , height[L]);
-                totalpaani  = totalpaani +Lwall - height[L];
-                L++;
+                if(height[left] >= maxleft) maxleft=height[left];
+
+                else res += maxleft-height[left];
+                
+                
+                left++;
             }
-            else 
-            {
-                Rwall = Math.max(Rwall , height[R]);
-                totalpaani = totalpaani + Rwall - height[R];
-                R--;
+            
+            else{
+                
+                if(height[right]>=maxright) maxright=height[right];
+
+                else res += maxright-height[right];
+                
+                
+                right--;
             }
-        
+
         }
-    return totalpaani;
+    return res;
         
     }
 }
